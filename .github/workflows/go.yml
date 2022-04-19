@@ -18,10 +18,17 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Build
-      run: go build -v . -o ../zdns
+    # step 2: generate build files and dump inside the workspace directory of the runner
+    - name: Generate build files
+      uses: thatisuday/go-build-action@v1
+      with:
+        platforms: "linux/amd64"
+        package: "zdns"
+        name: "zdns"
+        compress: "true"
+        dest: "dist"
       
     - uses: actions/upload-artifact@v3
       with:
         name: release
-        path: ./../zdns
+        path: ./dist/*.tar.gz
