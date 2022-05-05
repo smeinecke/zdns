@@ -21,6 +21,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"syscall"
 	"time"
 
 	log "github.com/sirupsen/logrus"
